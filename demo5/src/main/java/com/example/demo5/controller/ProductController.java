@@ -77,14 +77,14 @@ public class ProductController {
         if (imageProduct != null && imageProduct.getSize() > 0) {
             try {
                 File saveFile = new ClassPathResource("static/images").getFile();
-                // Delete old image
+
                 if (editProduct.getImage() != null) {
                     File oldImageFile = new File(saveFile, editProduct.getImage());
                     if (oldImageFile.exists()) {
                         oldImageFile.delete();
                     }
                 }
-                // Save new image
+
                 String newImageFile = UUID.randomUUID() + ".png";
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + newImageFile);
                 Files.copy(imageProduct.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
